@@ -1,0 +1,35 @@
+/*================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+
+:root{
+body{
+    background: #f5f7fa;
+    a{
+        color: #00d0bb;
+    }
+   .main-menu.menu-light .navigation > li ul .active{
+        background: #333;
+        box-shadow: none;
+    }
+   .main-menu.menu-light .navigation > li.active > a {
+    background: #333;
+    box-shadow: none;
+   }
+.btn-primary{
+    border-color: #00d0bb !important;
+    background-color: #00d0bb !important;
+}
+.main-menu{
+    box-shadow: 1px 0 4px 0 rgb(1 1 1 / 10%);
+}
+.brand-text{
+    color: #333 !important;
+    font-size: 24px;
+}
+}
+}
