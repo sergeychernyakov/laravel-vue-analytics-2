@@ -287,8 +287,8 @@ export default {
         perPage: filters.value.perPage,
       })
         .then(response => {
-          products.value = response.data.products
-          totalProducts.value = response.data.total
+          products.value = response.data.items
+          totalProducts.value = response.data.total_count
         })
     }
 

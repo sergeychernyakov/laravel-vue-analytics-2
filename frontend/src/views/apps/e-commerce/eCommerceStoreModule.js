@@ -18,7 +18,7 @@ export default {
     fetchProducts(ctx, payload) {
       return new Promise((resolve, reject) => {
         axios
-          .get('/apps/ecommerce/products', { params: payload })
+          .get('/api/auth/getproduct', { params: payload })
           .then(response => resolve(response))
           .catch(error => reject(error))
       })
