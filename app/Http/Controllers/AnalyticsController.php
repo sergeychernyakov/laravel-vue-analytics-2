@@ -44,4 +44,21 @@ class AnalyticsController extends Controller
         $analyticsData = Analytics::performQuery(Period::years(1), 'ga:sessions', ['metrics' => 'ga:sessions, ga:pageviews', 'dimensions' => 'ga:country']);
         return $analyticsData['rows'];
     }
+
+    /*
+     *** return the data of users from google analytics
+     *** @return Illumination/Collection
+     */
+    public function users(Request $request)
+    {
+        $analyticsData = Analytics::performQuery(Period::years(1),
+            'ga:',
+            [
+                'metrics' => 'ga:users,ga:newUsers,ga:sessions,ga:sessionsPerUser,ga:pageviews,ga:pageviewsPerSession,ga:avgSessionDuration,ga:bounceRate',
+                'dimensions' => 'ga:pageTitle',
+                // 'start-date' => '2018-08-01',
+                // 'end-date' => '2018-08-31',
+            ]);
+        return $analyticsData['rows'];
+    }
 }
