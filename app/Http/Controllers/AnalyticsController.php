@@ -22,4 +22,17 @@ class AnalyticsController extends Controller
         return $analyticsData;
     }
 
+    /*
+     *** return the data of top browsers from google analytics
+     *** @return Illumination/Collection
+     */
+    public function topBrowsers(Request $request)
+    {
+        $startDate = Carbon::now()->subYear();
+        $endDate = Carbon::now();
+
+        $analyticsData = Analytics::fetchTopBrowsers(Period::create($startDate, $endDate));
+        return $analyticsData;
+    }
+
 }

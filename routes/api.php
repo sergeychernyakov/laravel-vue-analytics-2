@@ -59,6 +59,7 @@ Route::group(['prefix' => 'auth'], function () {
 Route::group(['prefix' => 'analytics'], function () {
     Route::get('visitors', [AnalyticsController::class, 'visitors']);
     Route::get('countries', [AnalyticsController::class, 'countries']);
+    Route::get('browsers', [AnalyticsController::class, 'topBrowsers']);
 });
 
 Route::get('/', function () {
