@@ -35,4 +35,13 @@ class AnalyticsController extends Controller
         return $analyticsData;
     }
 
+    /*
+     *** return the data of countries from google analytics
+     *** @return Illumination/Collection
+     */
+    public function countries(Request $request)
+    {
+        $analyticsData = Analytics::performQuery(Period::years(1), 'ga:sessions', ['metrics' => 'ga:sessions, ga:pageviews', 'dimensions' => 'ga:country']);
+        return $analyticsData['rows'];
+    }
 }
