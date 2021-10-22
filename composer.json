@@ -19,6 +19,7 @@
         "laravel/vapor-core": "^2.12",
         "laravel/vapor-ui": "^1.2",
         "league/flysystem-aws-s3-v3": "~1.0",
+        "spatie/laravel-analytics": "^4.0",
         "symfony/dom-crawler": "^5.3"
     },
     "require-dev": {
