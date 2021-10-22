@@ -110,16 +110,16 @@ export default {
     renderSuggestion(suggestion) {
       if (suggestion.name === 'hotels') {
         const image = suggestion.item
-        return (
-          <div class="d-flex">
-            <div>
-              <b-avatar src={image.thumbnailUrl} class="mr-50"></b-avatar>
-            </div>
-            <div>
-              <span>{image.title}</span>
-            </div>
-          </div>
-        )
+        // return (
+        //   <div class="d-flex">
+        //     <div>
+        //       <b-avatar src={image.thumbnailUrl} class="mr-50"></b-avatar>
+        //     </div>
+        //     <div>
+        //       <span>{image.title}</span>
+        //     </div>
+        //   </div>
+        // )
       }
       return suggestion.item.name
     },

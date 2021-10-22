@@ -82,24 +82,24 @@ export default {
     renderSuggestion(suggestion) {
       if (suggestion.name === 'developers') {
         const dev = suggestion.item
-        return (
-          <div class="d-flex align-items-center">
-            <b-avatar src={dev.img} class="mr-50"></b-avatar>
-            <div class="detail">
-              <b-card-text class="mb-0">{dev.name}</b-card-text>
-              <small class="text-muted">{dev.email}</small>
-            </div>
-          </div>
-        )
+        // return (
+        //   <div class="d-flex align-items-center">
+        //     <b-avatar src={dev.img} class="mr-50"></b-avatar>
+        //     <div class="detail">
+        //       <b-card-text class="mb-0">{dev.name}</b-card-text>
+        //       <small class="text-muted">{dev.email}</small>
+        //     </div>
+        //   </div>
+        // )
       }
       if (suggestion.name === 'pages') {
         const page = suggestion.item
-        return (
-          <div class="d-flex align-items-center">
-            <feather-icon icon={page.icon} size={'18'} class={'mr-75'} />
-            <span>{page.name}</span>
-          </div>
-        )
+        // return (
+        //   <div class="d-flex align-items-center">
+        //     <feather-icon icon={page.icon} size={'18'} class={'mr-75'} />
+        //     <span>{page.name}</span>
+        //   </div>
+        // )
       }
       return false
     },

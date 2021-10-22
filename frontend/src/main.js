@@ -24,18 +24,17 @@ import '@/libs/tour'
 // Axios Mock Adapter
 import '@/@fake-db/db'
 
+// Configuration VueAnalytics
+Vue.use(VueAnalytics, {
+  id: 'UA-210803857-1',
+  router,
+})
 // BSV Plugin Registration
 Vue.use(ToastPlugin)
 Vue.use(ModalPlugin)
 
 // Composition API
 Vue.use(VueCompositionAPI)
-
-// Configuration VueAnalytics
-Vue.use(VueAnalytics, {
-  id: 'UA-210803857-1',
-  router,
-})
 
 // Feather font icon - For form-wizard
 // * Shall remove it if not using font-icons of feather-icons - For form-wizard

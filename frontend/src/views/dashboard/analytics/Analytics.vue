@@ -97,7 +97,7 @@ export default {
   created() {
     // data
     this.$http.get('/analytics/data')
-      .then(response => { this.data = response.data })
+      .then(response => { this.data = response.data; console.log(response.data) })
   },
   methods: {
     kFormatter,
