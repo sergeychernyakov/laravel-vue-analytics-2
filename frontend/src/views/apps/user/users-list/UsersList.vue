@@ -272,6 +272,7 @@ export default {
       { label: 'Company', value: 'company' },
       { label: 'Enterprise', value: 'enterprise' },
       { label: 'Team', value: 'team' },
+      { label: 'Petrol', value: 'petrol' },
     ]
 
     const statusOptions = [

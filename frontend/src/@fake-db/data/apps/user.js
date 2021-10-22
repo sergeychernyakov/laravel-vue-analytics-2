@@ -6,16 +6,16 @@ const data = {
   users: [
     {
       id: 1,
-      fullName: 'Dave Brown',
+      fullName: '1 series',
       company: 'Yotz PVT LTD',
-      role: 'editor',
+      role: 'saloon',
       username: 'gslixby0',
       country: 'El Salvador',
       contact: '(479) 232-9151',
       email: 'gslixby0@abc.net.au',
-      currentPlan: 'enterprise',
+      currentPlan: 'petrol',
       status: 'inactive',
-      avatar: '',
+      avatar: require('@/assets/images/avatars/bmw.png'),
     },
     {
       id: 2,

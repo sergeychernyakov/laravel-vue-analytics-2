@@ -12,6 +12,8 @@ import chartsMaps from './routes/charts-maps'
 import formsTable from './routes/forms-tables'
 import others from './routes/others'
 import orders from './routes/orders'
+import products from './routes/products'
+import content from './routes/content'
 
 Vue.use(VueRouter)
 
@@ -31,6 +33,8 @@ const router = new VueRouter({
     ...uiElements,
     ...others,
     ...orders,
+    ...products,
+    ...content,
     {
       path: '*',
       redirect: 'error-404',

@@ -27,20 +27,20 @@ class Orders extends Controller
         $stack = HandlerStack::create();
 
         $middleware = new Oauth1([
-           'consumer_key'    => 'hm9raxwmme2dez08nj7a7d5tnuq6i4lm',
-           'consumer_secret' => 'qpx18gs0jrlw14nazamw6kp2cwracv4q',
-           'token'           => '3bhmx1oaupfhkr3rd2z4d4k58m9ln2wr',
-           'token_secret'    => 'suc4uwkwwum725uvhn48me9fpnkz9cwy'
+           'consumer_key'    => 'qnnopm2yvhknuq6i0p2mjfnpjsx5os9g',
+           'consumer_secret' => '52ivyu7txij9m1izyf7ups8nlsy0naqx',
+           'token'           => 'vfxnnm89z5j8y427gzzt5gvwi3gpl7vp',
+           'token_secret'    => 'lt5fxack3lfisdlhm6wh9w69v3t9f46d'
        ]);
        
         $stack->push($middleware);
        
         $client = new Client([
-            'base_uri' => 'https://omnidemo.commerce.omniautomotive.uk/index.php/rest/default/V1/',
+            'base_uri' => 'http://54.74.138.56/index.php/rest/default/V1/',
             'handler' => $stack,
             'auth' => 'oauth'
         ]);
-    $response = $client->request('GET', 'products?Page]=1&searchCriteria[sortOrders][[0][direction]=DESC'); 
+    $response = $client->request('GET', 'products?Page=1&searchCriteria[pageSize]=12&searchCriteria[sortOrders][[0][direction]=DESC'); 
         echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
         
 
@@ -51,16 +51,16 @@ function omni(Request $request)
         $stack = HandlerStack::create();
 
         $middleware = new Oauth1([
-           'consumer_key'    => 'hm9raxwmme2dez08nj7a7d5tnuq6i4lm',
-           'consumer_secret' => 'qpx18gs0jrlw14nazamw6kp2cwracv4q',
-           'token'           => '3bhmx1oaupfhkr3rd2z4d4k58m9ln2wr',
-           'token_secret'    => 'suc4uwkwwum725uvhn48me9fpnkz9cwy'
+            'consumer_key'    => 'qnnopm2yvhknuq6i0p2mjfnpjsx5os9g',
+            'consumer_secret' => '52ivyu7txij9m1izyf7ups8nlsy0naqx',
+            'token'           => 'vfxnnm89z5j8y427gzzt5gvwi3gpl7vp',
+            'token_secret'    => 'lt5fxack3lfisdlhm6wh9w69v3t9f46d'
        ]);
        
         $stack->push($middleware);
        
         $client = new Client([
-            'base_uri' => 'https://omnidemo.commerce.omniautomotive.uk/index.php/rest/default/V1/',
+            'base_uri' => 'http://54.74.138.56/index.php/rest/default/V1/',
             'handler' => $stack,
             'auth' => 'oauth'
         ]);
@@ -75,20 +75,20 @@ function omni(Request $request)
         $stack = HandlerStack::create();
 
         $middleware = new Oauth1([
-           'consumer_key'    => 'hm9raxwmme2dez08nj7a7d5tnuq6i4lm',
-           'consumer_secret' => 'qpx18gs0jrlw14nazamw6kp2cwracv4q',
-           'token'           => '3bhmx1oaupfhkr3rd2z4d4k58m9ln2wr',
-           'token_secret'    => 'suc4uwkwwum725uvhn48me9fpnkz9cwy'
+            'consumer_key'    => 'qnnopm2yvhknuq6i0p2mjfnpjsx5os9g',
+            'consumer_secret' => '52ivyu7txij9m1izyf7ups8nlsy0naqx',
+            'token'           => 'vfxnnm89z5j8y427gzzt5gvwi3gpl7vp',
+            'token_secret'    => 'lt5fxack3lfisdlhm6wh9w69v3t9f46d'
        ]);
        
         $stack->push($middleware);
        
         $client = new Client([
-            'base_uri' => 'https://omnidemo.commerce.omniautomotive.uk/index.php/rest/default/V1/',
+            'base_uri' => 'http://54.74.138.56/index.php/rest/default/V1/',
             'handler' => $stack,
             'auth' => 'oauth'
         ]);
-    $response = $client->request('GET', 'orders/'.$id); 
+    $response = $client->request('GET', 'products/'.$id); 
         echo $response->getBody(); // '{"id": 1420053, "name": "guzzle", ...}'
         
 

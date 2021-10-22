@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\DomCrawler\Crawler;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
@@ -11,17 +12,28 @@ use GuzzleHttp\Subscriber\Oauth\Oauth1;
 
 class ContentCrawler extends Controller
 {
-    function getsvg(Request $request, $id)
+    function getsvg(Request $request, $file, $id)
     {
 
         $client = new Client([
-            'base_uri' => 'https://cdn.shopify.com/'
+            'base_uri' => $contents = Storage::disk('s3')->url('svg20210628/' .$file .'.svg')
         ]);
-    $response = $client->request('GET', 's/files/1/0489/0168/5406/files/test.svg'); 
+    $response = $client->request('GET', '');
      $content = $response->getBody()->getContents();
     $crawler = new Crawler( $content );
-    
+
     $data = $crawler->filter('#'.$id)->outerHtml();
-    return $data;   
+    return $data;
+    }
+
+    function getsvgfull(Request $request, $file)
+    {
+
+        $client = new Client([
+            'base_uri' => $contents = Storage::disk('s3')->url('svg20210628/' .$file .'.svg')
+        ]);
+    $response = $client->request('GET', '');
+    echo $response->getBody()->getContents();
     }
 }
+

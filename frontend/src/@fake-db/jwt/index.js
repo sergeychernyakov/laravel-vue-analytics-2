@@ -45,6 +45,33 @@ const data = {
         eCommerceCartItemsCount: 5,
       },
     },
+    {
+      id: 3,
+      fullName: 'Tom Brown',
+      username: 'tombrown',
+      password: 'Welcome1@',
+      // eslint-disable-next-line global-require
+      avatar: require('@/assets/images/avatars/1-small.png'),
+      email: 'tom.brown@omniautomotive.co.uk',
+      role: 'admin',
+      ability: [
+        {
+          action: 'read',
+          subject: 'ACL',
+        },
+        {
+          action: 'read',
+          subject: 'Auth',
+        },
+        {
+          action: 'read',
+          subject: 'Analytics',
+        },
+      ],
+      extras: {
+        eCommerceCartItemsCount: 1,
+      },
+    },
   ],
 }
 

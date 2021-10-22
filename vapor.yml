@@ -1,0 +1,17 @@
+id: 23150
+name: new
+environments:
+    production:
+        memory: 1024
+        cli-memory: 512
+        runtime: 'docker'
+          build:
+            - 'composer install --no-dev'
+    staging:
+        memory: 1024
+        cli-memory: 512
+        runtime: 'php-8.0:al2'
+        build:
+            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --ignore-platform-reqs'
+            - 'php artisan event:cache'
+            - 'npm run dev'

@@ -224,7 +224,8 @@ const data = {
     {
       id: 1,
       avatar: require('@/assets/images/avatars/10-small.png'),
-      fullName: "Korrie O'Crevy",
+      fullName: "BMW 1 Series",
+      bodystyle: "Hatchback 3 Door",
       post: 'Nuclear Power Engineer',
       email: 'kocrevy0@thetimes.co.uk',
       city: 'Krasnosilka',
@@ -234,7 +235,7 @@ const data = {
     {
       id: 2,
       avatar: require('@/assets/images/avatars/1-small.png'),
-      fullName: 'Bailie Coulman',
+      fullName: '2 seies',
       post: 'VP Quality Control',
       email: 'bcoulman1@yolasite.com',
       city: 'Hinigaran',

@@ -8,9 +8,14 @@ export default [
     icon: 'DollarSignIcon',
   },
   {
-    title: 'Email',
-    route: 'apps-email',
-    icon: 'MailIcon',
+    title: 'Content',
+    route: 'content',
+    icon: 'ChromeIcon',
+  },
+  {
+    title: 'Products',
+    route: 'Products',
+    icon: 'FileTextIcon',
   },
   {
     title: 'Chat',

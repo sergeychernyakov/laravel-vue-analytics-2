@@ -93,7 +93,7 @@
         no-body
       >
         <div class="item-img text-center">
-          <b-link :to="{ name: 'apps-e-commerce-product-details', params: { slug: product.slug } }">
+          <b-link :to="{ name: 'apps-e-commerce-product-details', params: { slug: product.id } }">
             <b-img
               :alt="`${product.name}-${product.id}`"
               fluid

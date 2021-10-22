@@ -15,6 +15,17 @@
             />
           </b-form-group>
         </b-col>
+              <b-col md="4">
+          <b-form-group>
+            <label>Body Style:</label>
+            <b-form-input
+              placeholder="Search"
+              type="text"
+              class="d-inline-block"
+              @input="advanceSearch"
+            />
+          </b-form-group>
+        </b-col>
         <b-col md="4">
           <b-form-group>
             <label>Email:</label>
@@ -204,6 +215,10 @@ export default {
         {
           label: 'Name',
           field: 'fullName',
+        },
+          {
+          label: 'Body Style',
+          field: 'bodystyle',
         },
         {
           label: 'Email',
