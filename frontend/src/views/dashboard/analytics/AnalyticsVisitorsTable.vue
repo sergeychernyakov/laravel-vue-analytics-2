@@ -46,7 +46,7 @@ export default {
     await axios
       .get("http://localhost:8081/api/analytics/visitors")
       .then((response) => {
-        this.items = response.data;console.log('response', response.date);
+        this.items = response.data;
       });
   },
 };
