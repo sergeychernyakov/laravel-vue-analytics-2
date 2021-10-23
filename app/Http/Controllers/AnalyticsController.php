@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Analytics;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Spatie\Analytics\Period;
 
@@ -24,7 +25,7 @@ class AnalyticsController extends Controller
             foreach ($analyticsData as $row) {
                 $date = new DateTime($row['date']);
                 $row['date'] = $date->format('Y-m-d H:i');
-                array_push($row);
+                array_push($data, $row);
             }
         }
         return $data;
