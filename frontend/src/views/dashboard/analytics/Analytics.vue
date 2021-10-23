@@ -57,7 +57,13 @@
 
     <b-row>
       <b-col cols="12">
-        <analytics-visitors-table :items="data.items" />
+        <analytics-visitors-table />
+      </b-col>
+    </b-row>
+
+    <b-row>
+      <b-col cols="12">
+        <analytics-users-by-countries />
       </b-col>
     </b-row>
   </section>
@@ -77,6 +83,7 @@ import AnalyticsSalesRadarChart from "./AnalyticsSalesRadarChart.vue";
 import AnalyticsAppDesign from "./AnalyticsAppDesign.vue";
 import AnalyticsVisitorsTable from "./AnalyticsVisitorsTable.vue";
 import axios from "axios";
+import AnalyticsUsersByCountries from './AnalyticsUsersByCountries.vue';
 
 export default {
   components: {
@@ -91,6 +98,7 @@ export default {
     AnalyticsAppDesign,
     InvoiceList,
     AnalyticsVisitorsTable,
+    AnalyticsUsersByCountries,
   },
   data() {
     return {
