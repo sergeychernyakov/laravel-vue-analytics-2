@@ -4,10 +4,8 @@ use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\Content;
 use App\Http\Controllers\ContentCrawler;
 use App\Http\Controllers\Orders;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Spatie\Analytics\Period;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +46,7 @@ Route::get('/svgfull/{file}', [ContentCrawler::class, 'getsvgfull'], function (R
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [Orders::class, 'login']);
     Route::post('register', [Orders::class, 'register']);
+    Route::get('omni', [Orders::class, 'omni']);
     Route::get('content', [Content::class, 'getcontent']); //content api
     Route::get('getproduct', [Orders::class, 'getproduct']);
 
@@ -61,12 +60,5 @@ Route::group(['prefix' => 'analytics'], function () {
     Route::get('countries', [AnalyticsController::class, 'countries']);
     Route::get('browsers', [AnalyticsController::class, 'topBrowsers']);
     Route::get('users', [AnalyticsController::class, 'users']);
-});
-
-Route::get('/', function () {
-    $startDate = Carbon::now()->subYear();
-    $endDate = Carbon::now();
-
-    $analyticsData = Analytics::fetchVisitorsAndPageViews(Period::create($startDate, $endDate));
-    return $analyticsData;
+    Route::get('sessions', [AnalyticsController::class, 'sessions']);
 });
