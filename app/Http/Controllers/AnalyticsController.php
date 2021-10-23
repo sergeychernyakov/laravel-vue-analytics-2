@@ -41,8 +41,16 @@ class AnalyticsController extends Controller
      */
     public function countries(Request $request)
     {
-        $analyticsData = Analytics::performQuery(Period::years(1), 'ga:sessions', ['metrics' => 'ga:sessions, ga:pageviews', 'dimensions' => 'ga:country']);
-        return $analyticsData['rows'];
+        // return the users and page views by countris for the last 1 year.
+        $analyticsData = Analytics::performQuery(Period::years(1), 'ga:sessions', ['metrics' => 'ga:users, ga:pageviews', 'dimensions' => 'ga:country']);
+        $data = [];
+        if (isset($analyticsData['rows']) && sizeof($analyticsData['rows']) > 0) {
+            foreach ($analyticsData['rows'] as $row) {
+                array_push($data, ['country' => $row[0], 'users' => $row[1], 'pageVies' => $row[2]]);
+            }
+        }
+
+        return $data;
     }
 
     /*
@@ -138,7 +146,7 @@ class AnalyticsController extends Controller
         }
         $data = [
             'analyticsData' => [
-                'subscribers' => $analyticsData['rows'][0][0] ? $analyticsData['rows'][0][0] : 0,
+                'subscribers' => isset($analyticsData['rows']) && isset($analyticsData['rows'][0]) && isset($analyticsData['rows'][0][0]) ? $analyticsData['rows'][0][0] : 0,
             ],
             'series' => [
                 [
@@ -147,6 +155,6 @@ class AnalyticsController extends Controller
                 ],
             ],
         ];
-        return response()->json($data);
+        return $data;
     }
 }
