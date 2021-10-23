@@ -13,4 +13,5 @@ npm-debug.log
 yarn-error.log
 .vapor/
 .env.production
-.env.staging
+.env.staging/publi
+/public/js/chunks
