@@ -57,7 +57,7 @@
 
     <b-row>
       <b-col cols="12">
-        <invoice-list />
+        <analytics-visitors-table :items="data.items" />
       </b-col>
     </b-row>
   </section>
@@ -75,6 +75,7 @@ import AnalyticsSupportTracker from "./AnalyticsSupportTracker.vue";
 import AnalyticsTimeline from "./AnalyticsTimeline.vue";
 import AnalyticsSalesRadarChart from "./AnalyticsSalesRadarChart.vue";
 import AnalyticsAppDesign from "./AnalyticsAppDesign.vue";
+import AnalyticsVisitorsTable from "./AnalyticsVisitorsTable.vue";
 import axios from "axios";
 
 export default {
@@ -89,23 +90,24 @@ export default {
     AnalyticsSalesRadarChart,
     AnalyticsAppDesign,
     InvoiceList,
+    AnalyticsVisitorsTable,
   },
   data() {
     return {
       data: {},
     };
   },
-  async created() {
+  created() {
     // data
     this.$http.get("/analytics/data").then((response) => {
       this.data = response.data;
     });
-    await axios
+    axios
       .get("http://localhost:8081/api/analytics/users")
       .then((response) => {
         this.data.subscribersGained = response.data;
       });
-    await axios
+    axios
       .get("http://localhost:8081/api/analytics/sessions")
       .then((response) => {
         this.data.avgSessions = response.data;
