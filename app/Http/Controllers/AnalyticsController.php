@@ -57,11 +57,13 @@ class AnalyticsController extends Controller
         $last7Sessions = Analytics::performQuery(Period::days(7), 'ga:', ['metrics' => 'ga:sessions', 'dimensions' => 'ga:date']);
         $last28Sessions = Analytics::performQuery(Period::days(28), 'ga:', ['metrics' => 'ga:sessions', 'dimensions' => 'ga:date']);
         $last30Sessions = Analytics::performQuery(Period::days(30), 'ga:', ['metrics' => 'ga:sessions', 'dimensions' => 'ga:date']);
+        $last1yearSessions = Analytics::performQuery(Period::years(1), 'ga:', ['metrics' => 'ga:sessions', 'dimensions' => 'ga:date']);
 
         $seriesData = [
             '0' => self::makeSeriesData($last7Sessions),
-            '1' => self::makeSeriesData($last28Sessions),
-            '2' => self::makeSeriesData($last30Sessions),
+            // '1' => self::makeSeriesData($last28Sessions),
+            // '2' => self::makeSeriesData($last30Sessions),
+            // '3' => self::makeSeriesData($last1yearSessions),
         ];
 
         $analyticsData = Analytics::performQuery(Period::years(1), 'ga:', ['metrics' => 'ga:sessions, ga:users']);
@@ -76,7 +78,9 @@ class AnalyticsController extends Controller
                 '1' => "Last Month",
                 '2' => "Last Year",
             ],
-            'salesbar' => $seriesData,
+            'salesBar' => [
+                'series' => $seriesData,
+            ],
             'sessions' => isset($analyticsData['rows'][0][0]) ? $analyticsData['rows'][0][0] : 0,
             'users' => isset($analyticsData['rows'][0][1]) ? $analyticsData['rows'][0][1] : 0,
         ];
@@ -137,10 +141,12 @@ class AnalyticsController extends Controller
                 'subscribers' => $analyticsData['rows'][0][0] ? $analyticsData['rows'][0][0] : 0,
             ],
             'series' => [
-                'data' => $monthsData,
-                'name' => 'Users',
+                [
+                    'data' => $monthsData,
+                    'name' => 'Users',
+                ],
             ],
         ];
-        return response()->header('Content-type: application/json; charset=utf-8')->json($data);
+        return response()->json($data);
     }
 }
