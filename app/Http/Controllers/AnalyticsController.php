@@ -46,6 +46,60 @@ class AnalyticsController extends Controller
     }
 
     /*
+     *** return the data of sessions from google analytics
+     *** @return Illumination/Collection
+     */
+    public function sessions(Request $request, $id = "0")
+    {
+        $now = Carbon::now();
+        $date = $now->toArray();
+        //get the session date by date
+        $last7Sessions = Analytics::performQuery(Period::days(7), 'ga:', ['metrics' => 'ga:sessions', 'dimensions' => 'ga:date']);
+        $last28Sessions = Analytics::performQuery(Period::days(28), 'ga:', ['metrics' => 'ga:sessions', 'dimensions' => 'ga:date']);
+        $last30Sessions = Analytics::performQuery(Period::days(30), 'ga:', ['metrics' => 'ga:sessions', 'dimensions' => 'ga:date']);
+
+        $seriesData = [
+            '0' => self::makeSeriesData($last7Sessions),
+            '1' => self::makeSeriesData($last28Sessions),
+            '2' => self::makeSeriesData($last30Sessions),
+        ];
+
+        $analyticsData = Analytics::performQuery(Period::years(1), 'ga:', ['metrics' => 'ga:sessions, ga:users']);
+
+        $data = [
+            'goal' => 1000,
+            'growth' => '+5.2%',
+            'duration' => '1',
+            'retention' => 90,
+            'lastDays' => [
+                '0' => "Last 28 Days",
+                '1' => "Last Month",
+                '2' => "Last Year",
+            ],
+            'salesbar' => $seriesData,
+            'sessions' => isset($analyticsData['rows'][0][0]) ? $analyticsData['rows'][0][0] : 0,
+            'users' => isset($analyticsData['rows'][0][1]) ? $analyticsData['rows'][0][1] : 0,
+        ];
+        return $data;
+    }
+
+    /*
+     *** return the data for series
+     *** @param Illumination/Collection
+     *** @return Illumination/Collection
+     */
+    private function makeSeriesData($data)
+    {
+        $result = [];
+        if (isset($data['rows']) && sizeof($data['rows']) > 0) {
+            for ($i = 0; $i < sizeof($data['rows']); $i++) {
+                array_push($result, $data['rows'][$i][1]);
+            }
+        }
+        return ['data' => $result, 'name' => 'Sessions'];
+    }
+
+    /*
      *** return the data of users from google analytics
      *** @return Illumination/Collection
      */
@@ -87,6 +141,6 @@ class AnalyticsController extends Controller
                 'name' => 'Users',
             ],
         ];
-        return response()->json($data);
+        return response()->header('Content-type: application/json; charset=utf-8')->json($data);
     }
 }
