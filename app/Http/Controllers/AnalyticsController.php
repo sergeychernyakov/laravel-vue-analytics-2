@@ -19,7 +19,15 @@ class AnalyticsController extends Controller
         $endDate = Carbon::now();
 
         $analyticsData = Analytics::fetchVisitorsAndPageViews(Period::create($startDate, $endDate));
-        return $analyticsData;
+        $data = [];
+        if (sizeof($analyticsData) > 0) {
+            foreach ($analyticsData as $row) {
+                $date = new DateTime($row['date']);
+                $row['date'] = $date->format('Y-m-d H:i');
+                array_push($row);
+            }
+        }
+        return $data;
     }
 
     /*
@@ -46,7 +54,7 @@ class AnalyticsController extends Controller
         $data = [];
         if (isset($analyticsData['rows']) && sizeof($analyticsData['rows']) > 0) {
             foreach ($analyticsData['rows'] as $row) {
-                array_push($data, ['country' => $row[0], 'users' => $row[1], 'pageVies' => $row[2]]);
+                array_push($data, ['country' => $row[0], 'users' => $row[1], 'pageViews' => $row[2]]);
             }
         }
 
