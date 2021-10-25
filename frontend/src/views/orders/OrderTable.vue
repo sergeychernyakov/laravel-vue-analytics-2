@@ -127,12 +127,6 @@ export default {
       }],
       codeRowDetailsSupport,
     }
-  },
-               mounted() {
-    axios
-      .get('/api/auth/omni').then(response => {
-            this.items = response.data.items
-          })
-  },
+  }
 }
 </script>

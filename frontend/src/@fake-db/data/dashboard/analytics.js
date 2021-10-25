@@ -9,11 +9,11 @@ const data = {
     series: [
       {
         name: 'Subscribers',
-        data: [28, 40, 36, 52, 38, 60, 55],
+        data: [0, 0, 0, 0, 0, 0, 0],
       },
     ],
     analyticsData: {
-      subscribers: 92600,
+      subscribers: 0,
     },
   },
   ordersRecevied: {
@@ -28,18 +28,18 @@ const data = {
     },
   },
   avgSessions: {
-    sessions: 2700,
-    lastDays: ['Last 28 Days', 'Last Month', 'Last Year'],
-    growth: '+5.2%',
-    goal: 100000,
-    users: 100000,
-    retention: 90,
+    sessions: 0,
+    lastDays: ['Last 7 Days'],
+    growth: '0%',
+    goal: 0,
+    users: 0,
+    retention: 0,
     duration: 1,
     salesBar: {
       series: [
         {
           name: 'Sessions',
-          data: [75, 125, 225, 175, 125, 75, 25],
+          data: [0, 0, 0, 0, 0, 0, 0],
         },
       ],
     },

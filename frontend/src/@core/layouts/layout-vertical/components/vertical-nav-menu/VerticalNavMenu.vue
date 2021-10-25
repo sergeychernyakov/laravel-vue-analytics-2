@@ -26,7 +26,7 @@
             >
   
               <h2 class="brand-text">
-             Omni.
+             Google analytics
               </h2>
             </b-link>
           </li>
