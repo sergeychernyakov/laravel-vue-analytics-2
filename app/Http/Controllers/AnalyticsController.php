@@ -24,7 +24,7 @@ class AnalyticsController extends Controller
         if (sizeof($analyticsData) > 0) {
             foreach ($analyticsData as $row) {
                 $date = new DateTime($row['date']);
-                $row['date'] = $date->format('Y-m-d H:i');
+                $row['date'] = $date->format('Y-m-d');
                 array_push($data, $row);
             }
         }
@@ -70,14 +70,11 @@ class AnalyticsController extends Controller
      */
     public function sessions(Request $request, $id = "0")
     {
-        $now = Carbon::now();
-        $date = $now->toArray();
         //get the session date by date
-        $last7Sessions = Analytics::performQuery(Period::days(7), 'ga:', ['metrics' => 'ga:sessions', 'dimensions' => 'ga:date']);
+        $last7Sessions = Analytics::performQuery(Period::days(6), 'ga:', ['metrics' => 'ga:sessions', 'dimensions' => 'ga:date']);
         $last28Sessions = Analytics::performQuery(Period::days(28), 'ga:', ['metrics' => 'ga:sessions', 'dimensions' => 'ga:date']);
         $last30Sessions = Analytics::performQuery(Period::days(30), 'ga:', ['metrics' => 'ga:sessions', 'dimensions' => 'ga:date']);
         $last1yearSessions = Analytics::performQuery(Period::years(1), 'ga:', ['metrics' => 'ga:sessions', 'dimensions' => 'ga:date']);
-
         $seriesData = [
             '0' => self::makeSeriesData($last7Sessions),
         ];
