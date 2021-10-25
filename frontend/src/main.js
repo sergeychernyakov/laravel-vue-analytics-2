@@ -26,7 +26,7 @@ import '@/@fake-db/db'
 
 // Configuration VueAnalytics
 Vue.use(VueAnalytics, {
-  id: 'UA-210803857-1',
+  id: 'UA-210874888-1',
   router,
 })
 // BSV Plugin Registration
