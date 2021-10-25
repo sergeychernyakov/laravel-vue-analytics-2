@@ -50,8 +50,10 @@ class AnalyticsController extends Controller
      */
     public function countries(Request $request)
     {
+        $startDate = Carbon::now()->subYear();
+        $endDate = Carbon::now();
         // return the users and page views by countris for the last 1 year.
-        $analyticsData = Analytics::performQuery(Period::years(1), 'ga:sessions', ['metrics' => 'ga:users, ga:pageviews', 'dimensions' => 'ga:country']);
+        $analyticsData = Analytics::performQuery(Period::create($startDate, $endDate), 'ga:sessions', ['metrics' => 'ga:users, ga:pageviews', 'dimensions' => 'ga:country']);
         $data = [];
         if (isset($analyticsData['rows']) && sizeof($analyticsData['rows']) > 0) {
             foreach ($analyticsData['rows'] as $row) {
@@ -78,9 +80,6 @@ class AnalyticsController extends Controller
 
         $seriesData = [
             '0' => self::makeSeriesData($last7Sessions),
-            // '1' => self::makeSeriesData($last28Sessions),
-            // '2' => self::makeSeriesData($last30Sessions),
-            // '3' => self::makeSeriesData($last1yearSessions),
         ];
 
         $analyticsData = Analytics::performQuery(Period::years(1), 'ga:', ['metrics' => 'ga:sessions, ga:users']);
@@ -91,9 +90,10 @@ class AnalyticsController extends Controller
             'duration' => '1',
             'retention' => 90,
             'lastDays' => [
-                '0' => "Last 28 Days",
-                '1' => "Last Month",
-                '2' => "Last Year",
+                '0' => "Last 7 Days",
+                '1' => "Last 28 days",
+                '2' => "Last a month",
+                '2' => "Last a Year",
             ],
             'salesBar' => [
                 'series' => $seriesData,
