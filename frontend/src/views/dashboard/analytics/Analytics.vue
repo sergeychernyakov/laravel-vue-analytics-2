@@ -5,53 +5,18 @@
         lg="6"
         md="12"
       >
-        <analytics-congratulation :data="data.congratulations" />
+        <analytics-avg-sessions :data="data.avgSessions" />
       </b-col>
       <b-col
-        lg="3"
-        sm="6"
+        lg="6"
+        md="12"
       >
         <statistic-card-with-area-chart
-          v-if="data.subscribersGained"
           icon="UsersIcon"
           :statistic="kFormatter(data.subscribersGained.analyticsData.subscribers)"
           statistic-title="Visitors"
           :chart-data="data.subscribersGained.series"
         />
-      </b-col>
-      <b-col
-        lg="3"
-        sm="6"
-      >
-        <statistic-card-with-area-chart
-          v-if="data.ordersRecevied"
-          icon="PackageIcon"
-          color="warning"
-          :statistic="kFormatter(data.ordersRecevied.analyticsData.orders)"
-          statistic-title="Orders Received"
-          :chart-data="data.ordersRecevied.series"
-        />
-      </b-col>
-    </b-row>
-
-    <b-row class="match-height">
-      <b-col lg="6">
-        <analytics-avg-sessions :data="data.avgSessions" />
-      </b-col>
-      <b-col lg="6">
-        <analytics-support-tracker :data="data.supportTracker" />
-      </b-col>
-    </b-row>
-
-    <b-row class="match-height">
-      <b-col lg="4">
-        <analytics-timeline :data="data.timeline" />
-      </b-col>
-      <b-col lg="4">
-        <analytics-sales-radar-chart :data="data.salesChart" />
-      </b-col>
-      <b-col lg="4">
-        <analytics-app-design :data="data.appDesign" />
       </b-col>
     </b-row>
 
@@ -83,7 +48,7 @@ import AnalyticsSalesRadarChart from "./AnalyticsSalesRadarChart.vue";
 import AnalyticsAppDesign from "./AnalyticsAppDesign.vue";
 import AnalyticsVisitorsTable from "./AnalyticsVisitorsTable.vue";
 import axios from "axios";
-import AnalyticsUsersByCountries from './AnalyticsUsersByCountries.vue';
+import AnalyticsUsersByCountries from "./AnalyticsUsersByCountries.vue";
 
 export default {
   components: {
@@ -105,16 +70,18 @@ export default {
       data: {},
     };
   },
-  created() {
-    // data
+  async created() {
+    // this.data = await this.$http.get('analytics/data');
+    // reponse = await axios.get("http://localhost:8081/api/analytics/sessions");
+    // this.data.avgSessions = response.data;
+    // let response = await axios.get("http://localhost:8081/api/analytics/users");
+    // this.data.subscribersGained = response.data;
     this.$http.get("/analytics/data").then((response) => {
       this.data = response.data;
     });
-    axios
-      .get("http://localhost:8081/api/analytics/users")
-      .then((response) => {
-        this.data.subscribersGained = response.data;
-      });
+    axios.get("http://localhost:8081/api/analytics/users").then((response) => {
+      this.data.subscribersGained = response.data;
+    });
     axios
       .get("http://localhost:8081/api/analytics/sessions")
       .then((response) => {
