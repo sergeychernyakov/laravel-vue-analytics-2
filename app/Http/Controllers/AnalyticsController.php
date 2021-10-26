@@ -163,4 +163,51 @@ class AnalyticsController extends Controller
         ];
         return $data;
     }
+
+    /*
+     *** return sessions by device for the last 1 week.
+     *** @return Illumination/Collection
+     */
+    public function sessionsByDevice(Request $request)
+    {
+        // get sessions by device for the last 1 week.
+        $last7Sessions = Analytics::performQuery(Period::days(6), 'ga:', ['metrics' => 'ga:sessions', 'dimensions' => 'ga:deviceCategory']);
+
+        $data = [0, 0];
+        if (isset($last7Sessions['rows']) && sizeof($last7Sessions['rows']) > 0) {
+            foreach ($last7Sessions['rows'] as $row) {
+                if (isset($row[0]) && $row[0] == 'desktop') {
+                    $data[0] = $row[1] ? (int) $row[1] : 0;
+                }
+                if (isset($row[0]) && $row[0] == 'mobile') {
+                    $data[1] = $row[1] ? (int) $row[1] : 0;
+                }
+            }
+        }
+        return $data;
+    }
+
+    /*
+     *** return statistics data for the last 1 week.
+     *** @return Illumination/Collection
+     */
+    public function statistics(Request $request)
+    {
+        // get data for the last 1 week.
+        $last7Users = Analytics::performQuery(Period::days(6), 'ga:', ['metrics' => 'ga:users']);
+        $last7NewUsers = Analytics::performQuery(Period::days(6), 'ga:', ['metrics' => 'ga:newUsers']);
+        $last7Sessions = Analytics::performQuery(Period::days(6), 'ga:', ['metrics' => 'ga:bounceRate']);
+        $last7PageviewsPerSession = Analytics::performQuery(Period::days(6), 'ga:', ['metrics' => 'ga:pageviewsPerSession']);
+
+        $data = [];
+        if (isset($last7Users['rows']) && sizeof($last7Users['rows']) > 0) {
+            $data[0] = $last7NewUsers['rows'][0][0] / $last7Users['rows'][0][0] * 100;
+        } else {
+            $data[0] = 0;
+        }
+        $data[1] = isset($last7Sessions['rows']) && sizeof($last7Sessions['rows']) > 0 ? $last7Sessions['rows'][0][0] : 0;
+        $data[2] = isset($last7PageviewsPerSession['rows']) && sizeof($last7PageviewsPerSession['rows']) > 0 ? $last7PageviewsPerSession['rows'][0][0] : 0;
+
+        return $data;
+    }
 }

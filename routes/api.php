@@ -25,4 +25,6 @@ Route::group(['prefix' => 'analytics'], function () {
     Route::get('browsers', [AnalyticsController::class, 'topBrowsers']);
     Route::get('users', [AnalyticsController::class, 'users']);
     Route::get('sessions', [AnalyticsController::class, 'sessions']);
+    Route::get('statistics', [AnalyticsController::class, 'statistics']);
+    Route::get('sessions-by-device', [AnalyticsController::class, 'sessionsByDevice']);
 });
