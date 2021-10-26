@@ -93,6 +93,11 @@
       </b-col>
       <!--/ Transaction Card -->
     </b-row>
+    <b-row>
+      <b-col>
+        <analytics />
+      </b-col>
+    </b-row>
   </section>
 </template>
 
@@ -111,6 +116,7 @@ import EcommerceMeetup from './EcommerceMeetup.vue'
 import EcommerceBrowserStates from './EcommerceBrowserStates.vue'
 import EcommerceGoalOverview from './EcommerceGoalOverview.vue'
 import EcommerceTransactions from './EcommerceTransactions.vue'
+import Analytics from '../analytics/Analytics';
 
 export default {
   components: {
@@ -128,6 +134,7 @@ export default {
     EcommerceBrowserStates,
     EcommerceGoalOverview,
     EcommerceTransactions,
+    Analytics
   },
   data() {
     return {
