@@ -21,6 +21,15 @@
     </b-row>
 
     <b-row>
+      <b-col cols="6">
+        <ananlytics-session-donut-chart />
+      </b-col>
+      <b-col cols="6">
+        <ananlytics-total />
+      </b-col>
+    </b-row>
+
+    <b-row>
       <b-col cols="12">
         <analytics-visitors-table />
       </b-col>
@@ -49,6 +58,8 @@ import AnalyticsAppDesign from "./AnalyticsAppDesign.vue";
 import AnalyticsVisitorsTable from "./AnalyticsVisitorsTable.vue";
 import axios from "axios";
 import AnalyticsUsersByCountries from "./AnalyticsUsersByCountries.vue";
+import AnanlyticsSessionDonutChart from "./AnanlyticsSessionDonutChart.vue";
+import AnanlyticsTotal from './AnalyticsTotal.vue';
 
 export default {
   components: {
@@ -64,6 +75,8 @@ export default {
     InvoiceList,
     AnalyticsVisitorsTable,
     AnalyticsUsersByCountries,
+    AnanlyticsSessionDonutChart,
+    AnanlyticsTotal
   },
   data() {
     return {
@@ -71,11 +84,6 @@ export default {
     };
   },
   async created() {
-    // this.data = await this.$http.get('analytics/data');
-    // reponse = await axios.get("http://localhost:8081/api/analytics/sessions");
-    // this.data.avgSessions = response.data;
-    // let response = await axios.get("http://localhost:8081/api/analytics/users");
-    // this.data.subscribersGained = response.data;
     this.$http.get("/analytics/data").then((response) => {
       this.data = response.data;
     });
